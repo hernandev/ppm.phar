@@ -5,7 +5,7 @@ This project provides PPM ([php-pm](https://github.com/php-pm/php-pm)) as a sing
 ### Install
 
 ```
-wget https://github.com/hernandev/ppm.phar/releases/download/0.0.1/ppm.phar -O ppm.phar
+wget https://raw.githubusercontent.com/hernandev/ppm.phar/1.0.2/dist/ppm.phar
 chmod +x ppm.phar
 ```
 
