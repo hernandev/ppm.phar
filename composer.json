@@ -23,5 +23,15 @@
     },
     "bin": [
         "bin/ppm"
-    ]
+    ],
+    "scripts": {
+        "build": [
+            "rm dist/*.phar",
+            "php vendor/bin/box --ansi compile",
+            "php vendor/bin/box --ansi info dist/ppm.phar"
+        ],
+        "verify": [
+            "php vendor/bin/box --ansi verify dist/ppm.phar"
+        ]
+    }
 }
