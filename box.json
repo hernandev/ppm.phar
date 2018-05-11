@@ -1,0 +1,8 @@
+{
+    "chmod": "0775",
+    "output": "dist/ppm.phar",
+    "main": "bin/ppm",
+    "compression": "GZ",
+    "check-requirements": true,
+    "algorithm": "SHA1"
+}

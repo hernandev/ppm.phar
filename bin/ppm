@@ -1,0 +1,42 @@
+<?php
+
+set_time_limit(0);
+
+function includeIfExists($file)
+{
+    if (file_exists($file)) {
+        return include $file;
+    }
+}
+
+if ((!$loader = includeIfExists(__DIR__.'/../vendor/autoload.php'))) {
+    die('Error Loading PHP-PM'.PHP_EOL);
+}
+
+if (!PHPPM\pcntl_installed()) {
+    die(
+    sprintf(
+        'PCNTL is not enabled in the PHP installation at %s. See: http://php.net/manual/en/pcntl.installation.php',
+        PHP_BINARY
+    )
+    );
+}
+
+if (!PHPPM\pcntl_enabled()) {
+    die('Some required PCNTL functions are disabled. Check `disabled_functions` in `php.ini`.');
+}
+
+use Symfony\Component\Console\Application;
+use PHPPM\Commands\StartCommand;
+use PHPPM\Commands\StopCommand;
+use PHPPM\Commands\ReloadCommand;
+use PHPPM\Commands\StatusCommand;
+use PHPPM\Commands\ConfigCommand;
+
+$app = new Application('PHP-PM');
+$app->add(new StartCommand);
+$app->add(new StopCommand);
+$app->add(new ReloadCommand);
+$app->add(new StatusCommand);
+$app->add(new ConfigCommand());
+$app->run();

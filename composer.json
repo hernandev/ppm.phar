@@ -1,0 +1,37 @@
+{
+    "name": "blocker/php-pm-phar",
+    "description": "PHAR builds for PHP-PM",
+    "type": "metapackage",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Diego Hernandes",
+            "email": "diego@hernandev.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {
+        "php": ">=5.6.0",
+        "ext-pcntl":"*",
+        "ext-zlib": "*",
+        "php-pm/php-pm": "^1.0",
+        "php-pm/httpkernel-adapter": "1.0.1"
+    },
+    "require-dev": {
+        "humbug/box": "^3.0@alpha"
+    },
+    "bin": [
+        "bin/ppm"
+    ],
+    "scripts": {
+        "build": [
+            "rm dist/*.phar",
+            "php vendor/bin/box --ansi compile",
+            "php vendor/bin/box --ansi info dist/ppm.phar"
+        ],
+        "verify": [
+            "php vendor/bin/box --ansi verify dist/ppm.phar"
+        ]
+    }
+}
